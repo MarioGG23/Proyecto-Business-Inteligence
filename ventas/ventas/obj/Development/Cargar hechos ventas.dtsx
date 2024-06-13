@@ -1,0 +1,2888 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/20/2018 9:52:43 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-D18B8IJ"
+  DTS:CreatorName="DESKTOP-D18B8IJ\Natalia"
+  DTS:DTSID="{F7E88DD1-0281-4FF0-98BE-82EBF49230F0}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.5000.0"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="Cargar hechos ventas"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{68D97A40-5FE0-430A-8825-D990C4687E6B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventas]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{19410F2F-D0F3-4D4E-8BC6-0EA98C5B563F}"
+      DTS:ObjectName="DESKTOP-D18B8IJ.ventas">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-D18B8IJ;Initial Catalog=ventas;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventasDM]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5B7EDFB0-1355-4827-9A91-A47756FA0616}"
+      DTS:ObjectName="DESKTOP-D18B8IJ.ventasDM">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-D18B8IJ;Initial Catalog=ventasDM;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\cargar hechos ventas"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{901707f0-4658-4555-bf2a-59b9899d1a1e}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="cargar hechos ventas"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\cargar hechos ventas.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{2827d4cd-fc2c-4eab-9d8d-1f4c8b300a1c}"
+          DTS:EventID="619189084"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="La propiedad de propagación del evento"
+              DTS:DTSID="{9742ac6b-74ec-4c3b-8b88-b4d92ea23a3f}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\cargar hechos ventas\Agrupar"
+              componentClassID="Microsoft.Aggregate"
+              contactInfo="Agregado;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;3"
+              description="Agrega datos mediante funciones como Average, Sum, Count, Max y Min. Por ejemplo, se agrupan datos para calcular la suma de las ventas por producto o el promedio de visitas por día."
+              name="Agrupar"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número aproximado de claves GROUP BY que produce la agregación. Mínimo indica 500.000 valores de clave, Medio indica 5.000.000 de valores de clave y Alto indica más de 25.000.000 de valores de clave. No especificado indica que no se usó ningún valor de KeyScale."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Especifica el número exacto de claves GROUP BY que produce la agregación. Si se especifica un valor de KeyScale, el valor de Keys tiene prioridad."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número aproximado de valores distintos de una columna que cuenta la agregación de forma distintiva. Mínimo indica 500.000 valores de clave, Medio indica 5.000.000 de valores de clave y Alto indica más de 25.000.000 valores de clave. No especificado indica que no se usa ningún valor de CountDistinctScale."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Especifica el número exacto de valores distintos de una columna que cuenta la agregación de forma distintiva. Si se especifica un valor de CountDistinctScale, el valor de CountDistinctKeys tiene prioridad."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el porcentaje en el que puede ampliarse la memoria durante la agregación. Los valores válidos están comprendidos entre 1 y 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\cargar hechos ventas\Agrupar.Inputs[Entrada de agregado 1]"
+                  name="Entrada de agregado 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Inputs[Entrada de agregado 1].Columns[Id_Pedido]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Id_Pedido"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Id_Pedido]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Inputs[Entrada de agregado 1].Columns[Total]"
+                      cachedDataType="r8"
+                      cachedName="Total"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Total]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Inputs[Entrada de agregado 1].Columns[Descuento]"
+                      cachedDataType="r8"
+                      cachedName="Descuento"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Descuento]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Inputs[Entrada de agregado 1].Columns[Cantidad]"
+                      cachedDataType="r8"
+                      cachedName="Cantidad"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Cantidad]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Inputs[Entrada de agregado 1].Columns[Ganancia]"
+                      cachedDataType="r8"
+                      cachedName="Ganancia"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Ganancia]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Inputs[Entrada de agregado 1].Columns[Pk_tiempo]"
+                      cachedDataType="i4"
+                      cachedName="Pk_tiempo"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_tiempo]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Inputs[Entrada de agregado 1].Columns[Pk_producto]"
+                      cachedDataType="i4"
+                      cachedName="Pk_producto"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_producto]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Inputs[Entrada de agregado 1].Columns[Pk_cliente]"
+                      cachedDataType="i4"
+                      cachedName="Pk_cliente"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_cliente]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Inputs[Entrada de agregado 1].Columns[Pk_ciudad]"
+                      cachedDataType="i4"
+                      cachedName="Pk_ciudad"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_ciudad]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1]"
+                  name="Salida de agregado 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el número aproximado de claves GROUP BY que produce la agregación. Mínimo indica 500.000 valores de clave, Medio indica 5.000.000 de valores de clave y Alto indica más de 25.000.000 de valores de clave. No especificado indica que no se usó ningún valor de KeyScale."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Especifica el número exacto de claves GROUP BY que produce la agregación. Si se especifica un valor de KeyScale, el valor de Keys tiene prioridad."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Id_Pedido]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Id_Pedido]"
+                      name="Id_Pedido">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el id. de la columna de entrada usada en la agregación."
+                          name="AggregationColumnId">#{Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Id_Pedido]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el tipo de agregación."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indica si la columna requiere tratamiento especial porque puede contener datos de tamaño excesivo o porque requiere mayor precisión que el tipo de datos float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación de cadenas."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Total]"
+                      dataType="r8"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Total]"
+                      name="Total">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el id. de la columna de entrada usada en la agregación."
+                          name="AggregationColumnId">#{Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Total]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el tipo de agregación."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indica si la columna requiere tratamiento especial porque puede contener datos de tamaño excesivo o porque requiere mayor precisión que el tipo de datos float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación de cadenas."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Descuento]"
+                      dataType="r8"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Descuento]"
+                      name="Descuento">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el id. de la columna de entrada usada en la agregación."
+                          name="AggregationColumnId">#{Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Descuento]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el tipo de agregación."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indica si la columna requiere tratamiento especial porque puede contener datos de tamaño excesivo o porque requiere mayor precisión que el tipo de datos float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación de cadenas."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Cantidad]"
+                      dataType="r8"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Cantidad]"
+                      name="Cantidad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el id. de la columna de entrada usada en la agregación."
+                          name="AggregationColumnId">#{Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Cantidad]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el tipo de agregación."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indica si la columna requiere tratamiento especial porque puede contener datos de tamaño excesivo o porque requiere mayor precisión que el tipo de datos float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación de cadenas."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Ganancia]"
+                      dataType="r8"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Ganancia]"
+                      name="Ganancia">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el id. de la columna de entrada usada en la agregación."
+                          name="AggregationColumnId">#{Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Ganancia]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el tipo de agregación."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indica si la columna requiere tratamiento especial porque puede contener datos de tamaño excesivo o porque requiere mayor precisión que el tipo de datos float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación de cadenas."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_tiempo]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_tiempo]"
+                      name="Pk_tiempo">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el id. de la columna de entrada usada en la agregación."
+                          name="AggregationColumnId">#{Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_tiempo]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el tipo de agregación."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indica si la columna requiere tratamiento especial porque puede contener datos de tamaño excesivo o porque requiere mayor precisión que el tipo de datos float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación de cadenas."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_producto]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_producto]"
+                      name="Pk_producto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el id. de la columna de entrada usada en la agregación."
+                          name="AggregationColumnId">#{Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_producto]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el tipo de agregación."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indica si la columna requiere tratamiento especial porque puede contener datos de tamaño excesivo o porque requiere mayor precisión que el tipo de datos float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación de cadenas."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_cliente]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_cliente]"
+                      name="Pk_cliente">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el id. de la columna de entrada usada en la agregación."
+                          name="AggregationColumnId">#{Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_cliente]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el tipo de agregación."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indica si la columna requiere tratamiento especial porque puede contener datos de tamaño excesivo o porque requiere mayor precisión que el tipo de datos float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación de cadenas."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_ciudad]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_ciudad]"
+                      name="Pk_ciudad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el id. de la columna de entrada usada en la agregación."
+                          name="AggregationColumnId">#{Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_ciudad]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el tipo de agregación."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indica si la columna requiere tratamiento especial porque puede contener datos de tamaño excesivo o porque requiere mayor precisión que el tipo de datos float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación de cadenas."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar hechos ventas\cambiar formato a fecha_pedido"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="cambiar formato a fecha_pedido"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Inputs[Entrada de conversión de datos].Columns[Fecha_Pedido]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha_Pedido"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Fecha_Pedido]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Outputs[Salida de conversión de datos].Columns[Copia de Fecha_Pedido]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="RedirectRow"
+                      lineageId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Outputs[Salida de conversión de datos].Columns[Copia de Fecha_Pedido]"
+                      name="Copia de Fecha_Pedido"
+                      truncationRowDisposition="RedirectRow">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Fecha_Pedido]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar hechos ventas\Ciudad"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Búsqueda;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;6"
+              description="Combina columnas adicionales con el flujo de datos mediante la búsqueda de valores en una tabla. Por ejemplo, se combina la columna 'id. de empleado' con la tabla de empleados para obtener la 'fecha de contratación' y 'el nombre de empleado'. Se recomienda esta transformación cuando hay suficiente espacio en memoria para la tabla de búsqueda."
+              name="Ciudad"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL que genera la tabla de búsqueda."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Dim_ciudad]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica una instrucción SQL que usa parámetros para generar la tabla de búsqueda."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Dim_ciudad]) [refTable]
+where [refTable].[Ciudad] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de conexión utilizado para tener acceso al conjunto de datos de referencia."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de caché de la tabla de búsqueda."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cómo la transformación de búsquedas trata las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el porcentaje de la caché asignado a las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indica si se debe hacer referencia a metadatos en formato XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Pk_ciudad" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Ciudad" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Estado" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Pais" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Region" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
+                  name="ParameterMap">#{Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Ciudad]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina si las claves duplicadas de los datos de referencia se deben tratar como errores cuando se usa el modo de caché."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar hechos ventas\Ciudad.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventasDM]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventasDM]"
+                  description="Administrador de conexiones utilizado para obtener acceso a los datos de búsqueda."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar hechos ventas\Ciudad.Inputs[Entrada de búsqueda]"
+                  name="Entrada de búsqueda">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ciudad.Inputs[Entrada de búsqueda].Columns[Ciudad]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Ciudad"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Ciudad]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                          name="JoinToReferenceColumn">Ciudad</property>
+                        <property
+                          dataType="System.Null"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar hechos ventas\Ciudad.Outputs[Salida de entradas coincidentes de búsqueda]"
+                  errorOrTruncationOperation="Búsqueda"
+                  errorRowDisposition="RedirectRow"
+                  exclusionGroup="1"
+                  name="Salida de entradas coincidentes de búsqueda"
+                  synchronousInputId="Package\cargar hechos ventas\Ciudad.Inputs[Entrada de búsqueda]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ciudad.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_ciudad]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copiar columna"
+                      lineageId="Package\cargar hechos ventas\Ciudad.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_ciudad]"
+                      name="Pk_ciudad"
+                      truncationRowDisposition="RedirectRow">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn">Pk_ciudad</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar hechos ventas\Ciudad.Outputs[Salida de entradas no coincidentes de búsqueda]"
+                  description="Salida de búsqueda que trata las filas sin entradas coincidentes en el conjunto de datos de referencia. Utilice esta salida cuando la propiedad NoMatchBehavior esté establecida en &quot;Enviar las filas sin entradas coincidentes a la salida de entradas no coincidentes&quot;."
+                  exclusionGroup="1"
+                  name="Salida de entradas no coincidentes de búsqueda"
+                  synchronousInputId="Package\cargar hechos ventas\Ciudad.Inputs[Entrada de búsqueda]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar hechos ventas\Ciudad.Outputs[Salida de error de búsqueda]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de búsqueda"
+                  synchronousInputId="Package\cargar hechos ventas\Ciudad.Inputs[Entrada de búsqueda]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ciudad.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Ciudad.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ciudad.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Ciudad.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar hechos ventas\Cliente"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Búsqueda;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;6"
+              description="Combina columnas adicionales con el flujo de datos mediante la búsqueda de valores en una tabla. Por ejemplo, se combina la columna 'id. de empleado' con la tabla de empleados para obtener la 'fecha de contratación' y 'el nombre de empleado'. Se recomienda esta transformación cuando hay suficiente espacio en memoria para la tabla de búsqueda."
+              name="Cliente"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL que genera la tabla de búsqueda."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Dim_cliente]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica una instrucción SQL que usa parámetros para generar la tabla de búsqueda."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Dim_cliente]) [refTable]
+where [refTable].[Id_cliente] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de conexión utilizado para tener acceso al conjunto de datos de referencia."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de caché de la tabla de búsqueda."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cómo la transformación de búsquedas trata las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el porcentaje de la caché asignado a las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indica si se debe hacer referencia a metadatos en formato XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Pk_cliente" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Id_cliente" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Nombre_cliente" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Segmento" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
+                  name="ParameterMap">#{Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Cliente]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina si las claves duplicadas de los datos de referencia se deben tratar como errores cuando se usa el modo de caché."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar hechos ventas\Cliente.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventasDM]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventasDM]"
+                  description="Administrador de conexiones utilizado para obtener acceso a los datos de búsqueda."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar hechos ventas\Cliente.Inputs[Entrada de búsqueda]"
+                  name="Entrada de búsqueda">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Cliente.Inputs[Entrada de búsqueda].Columns[Id_Cliente]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Id_Cliente"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Cliente]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                          name="JoinToReferenceColumn">Id_cliente</property>
+                        <property
+                          dataType="System.Null"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar hechos ventas\Cliente.Outputs[Salida de entradas coincidentes de búsqueda]"
+                  errorOrTruncationOperation="Búsqueda"
+                  exclusionGroup="1"
+                  name="Salida de entradas coincidentes de búsqueda"
+                  synchronousInputId="Package\cargar hechos ventas\Cliente.Inputs[Entrada de búsqueda]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Cliente.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_cliente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copiar columna"
+                      lineageId="Package\cargar hechos ventas\Cliente.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_cliente]"
+                      name="Pk_cliente"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn">Pk_cliente</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar hechos ventas\Cliente.Outputs[Salida de entradas no coincidentes de búsqueda]"
+                  description="Salida de búsqueda que trata las filas sin entradas coincidentes en el conjunto de datos de referencia. Utilice esta salida cuando la propiedad NoMatchBehavior esté establecida en &quot;Enviar las filas sin entradas coincidentes a la salida de entradas no coincidentes&quot;."
+                  exclusionGroup="1"
+                  name="Salida de entradas no coincidentes de búsqueda"
+                  synchronousInputId="Package\cargar hechos ventas\Cliente.Inputs[Entrada de búsqueda]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar hechos ventas\Cliente.Outputs[Salida de error de búsqueda]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de búsqueda"
+                  synchronousInputId="Package\cargar hechos ventas\Cliente.Inputs[Entrada de búsqueda]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Cliente.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Cliente.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Cliente.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Cliente.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar hechos ventas\DataReaderDest"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Expone los datos de un flujo de datos a otras aplicaciones mediante la interfaz DataReader de ADO.NET. Por ejemplo, se usa para enviar datos a una aplicación personalizada, escrita en C#, que requiera una interfaz DataReader.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Expone los datos de un flujo de datos a otras aplicaciones mediante la interfaz DataReader de ADO.NET. Por ejemplo, se usa para enviar datos a una aplicación personalizada, escrita en C#, que requiera una interfaz DataReader."
+              name="DataReaderDest">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de milisegundos antes de que se agote el tiempo de espera del componente."
+                  name="ReadTimeout">30000</property>
+                <property
+                  dataType="System.Null"
+                  description="Especifica un objeto que implementa la interfaz IDataReader."
+                  name="DataReader" />
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se produce un error en el componente cuando se agota el tiempo de espera de lectura."
+                  name="FailOnTimeout">false</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderDestinationAdapter</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\cargar hechos ventas\DataReaderDest.Inputs[Entrada de destino de DataReader]"
+                  hasSideEffects="true"
+                  name="Entrada de destino de DataReader">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\cargar hechos ventas\DataReaderDest 1"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Expone los datos de un flujo de datos a otras aplicaciones mediante la interfaz DataReader de ADO.NET. Por ejemplo, se usa para enviar datos a una aplicación personalizada, escrita en C#, que requiera una interfaz DataReader.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Expone los datos de un flujo de datos a otras aplicaciones mediante la interfaz DataReader de ADO.NET. Por ejemplo, se usa para enviar datos a una aplicación personalizada, escrita en C#, que requiera una interfaz DataReader."
+              name="DataReaderDest 1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de milisegundos antes de que se agote el tiempo de espera del componente."
+                  name="ReadTimeout">30000</property>
+                <property
+                  dataType="System.Null"
+                  description="Especifica un objeto que implementa la interfaz IDataReader."
+                  name="DataReader" />
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se produce un error en el componente cuando se agota el tiempo de espera de lectura."
+                  name="FailOnTimeout">false</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderDestinationAdapter</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\cargar hechos ventas\DataReaderDest 1.Inputs[Entrada de destino de DataReader]"
+                  hasSideEffects="true"
+                  name="Entrada de destino de DataReader">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\cargar hechos ventas\DataReaderDest 2"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Expone los datos de un flujo de datos a otras aplicaciones mediante la interfaz DataReader de ADO.NET. Por ejemplo, se usa para enviar datos a una aplicación personalizada, escrita en C#, que requiera una interfaz DataReader.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Expone los datos de un flujo de datos a otras aplicaciones mediante la interfaz DataReader de ADO.NET. Por ejemplo, se usa para enviar datos a una aplicación personalizada, escrita en C#, que requiera una interfaz DataReader."
+              name="DataReaderDest 2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de milisegundos antes de que se agote el tiempo de espera del componente."
+                  name="ReadTimeout">30000</property>
+                <property
+                  dataType="System.Null"
+                  description="Especifica un objeto que implementa la interfaz IDataReader."
+                  name="DataReader" />
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se produce un error en el componente cuando se agota el tiempo de espera de lectura."
+                  name="FailOnTimeout">false</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderDestinationAdapter</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\cargar hechos ventas\DataReaderDest 2.Inputs[Entrada de destino de DataReader]"
+                  hasSideEffects="true"
+                  name="Entrada de destino de DataReader">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\cargar hechos ventas\hechos venta"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="hechos venta"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[Hechos_venta]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar hechos ventas\hechos venta.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventasDM]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventasDM]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="RedirectRow"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].Columns[Id_Pedido]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Id_Pedido"
+                      externalMetadataColumnId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id_pedido]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Id_Pedido]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].Columns[Pk_ciudad]"
+                      cachedDataType="i4"
+                      cachedName="Pk_ciudad"
+                      externalMetadataColumnId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pk_ciudad]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_ciudad]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].Columns[Pk_cliente]"
+                      cachedDataType="i4"
+                      cachedName="Pk_cliente"
+                      externalMetadataColumnId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pk_cliente]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_cliente]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].Columns[Pk_producto]"
+                      cachedDataType="i4"
+                      cachedName="Pk_producto"
+                      externalMetadataColumnId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pk_producto]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_producto]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].Columns[Pk_tiempo]"
+                      cachedDataType="i4"
+                      cachedName="Pk_tiempo"
+                      externalMetadataColumnId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[pk_fecha_venta]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_tiempo]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].Columns[Cantidad]"
+                      cachedDataType="r8"
+                      cachedName="Cantidad"
+                      externalMetadataColumnId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cantidad_vendida]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Cantidad]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].Columns[Ganancia]"
+                      cachedDataType="r8"
+                      cachedName="Ganancia"
+                      externalMetadataColumnId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Ganancia_venta]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Ganancia]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].Columns[Descuento]"
+                      cachedDataType="r8"
+                      cachedName="Descuento"
+                      externalMetadataColumnId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Descuento_venta]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Descuento]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].Columns[Total]"
+                      cachedDataType="r8"
+                      cachedName="Total"
+                      externalMetadataColumnId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Total_venta]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Total]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pk_producto]"
+                      dataType="i4"
+                      name="Pk_producto" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pk_ciudad]"
+                      dataType="i4"
+                      name="Pk_ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pk_cliente]"
+                      dataType="i4"
+                      name="Pk_cliente" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[pk_fecha_venta]"
+                      dataType="i4"
+                      name="pk_fecha_venta" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id_pedido]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_pedido" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cantidad_vendida]"
+                      dataType="r8"
+                      name="Cantidad_vendida" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Ganancia_venta]"
+                      dataType="r8"
+                      name="Ganancia_venta" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Descuento_venta]"
+                      dataType="r8"
+                      name="Descuento_venta" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB].ExternalColumns[Total_venta]"
+                      dataType="r8"
+                      name="Total_venta" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar hechos ventas\hechos venta.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\hechos venta.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\hechos venta.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\hechos venta.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar hechos ventas\Ordenar"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Id_Pedido]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Id_Pedido"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Pedido]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Fecha_Pedido]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha_Pedido"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Fecha_Pedido]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Fecha_Envio]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha_Envio"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Fecha_Envio]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Forma_Envio]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Forma_Envio"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Forma_Envio]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Total]"
+                      cachedDataType="r8"
+                      cachedName="Total"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Total]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Cantidad]"
+                      cachedDataType="r8"
+                      cachedName="Cantidad"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Cantidad]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Descuento]"
+                      cachedDataType="r8"
+                      cachedName="Descuento"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Descuento]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Ganancia]"
+                      cachedDataType="r8"
+                      cachedName="Ganancia"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Ganancia]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Id_Cliente]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Id_Cliente"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Cliente]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Ciudad]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Ciudad"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Ciudad]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Id_Producto]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Id_Producto"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Producto]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Copia de Fecha_Pedido]"
+                      cachedDataType="dbDate"
+                      cachedName="Copia de Fecha_Pedido"
+                      lineageId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Outputs[Salida de conversión de datos].Columns[Copia de Fecha_Pedido]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Pk_ciudad]"
+                      cachedDataType="i4"
+                      cachedName="Pk_ciudad"
+                      lineageId="Package\cargar hechos ventas\Ciudad.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_ciudad]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Pk_cliente]"
+                      cachedDataType="i4"
+                      cachedName="Pk_cliente"
+                      lineageId="Package\cargar hechos ventas\Cliente.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_cliente]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Pk_producto]"
+                      cachedDataType="i4"
+                      cachedName="Pk_producto"
+                      lineageId="Package\cargar hechos ventas\Producto.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_producto]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación].Columns[Pk_tiempo]"
+                      cachedDataType="i4"
+                      cachedName="Pk_tiempo"
+                      lineageId="Package\cargar hechos ventas\Tiempo.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_tiempo]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Id_Pedido]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Id_Pedido]"
+                      name="Id_Pedido">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Pedido]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Fecha_Pedido]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Fecha_Pedido]"
+                      name="Fecha_Pedido">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Fecha_Pedido]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Fecha_Envio]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Fecha_Envio]"
+                      name="Fecha_Envio">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Fecha_Envio]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Forma_Envio]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Forma_Envio]"
+                      name="Forma_Envio">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Forma_Envio]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Total]"
+                      dataType="r8"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Total]"
+                      name="Total">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Total]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Cantidad]"
+                      dataType="r8"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Cantidad]"
+                      name="Cantidad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Cantidad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Descuento]"
+                      dataType="r8"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Descuento]"
+                      name="Descuento">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Descuento]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Ganancia]"
+                      dataType="r8"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Ganancia]"
+                      name="Ganancia">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Ganancia]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Id_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Id_Cliente]"
+                      name="Id_Cliente">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Cliente]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Ciudad]"
+                      name="Ciudad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Ciudad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Id_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Id_Producto]"
+                      name="Id_Producto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Producto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Copia de Fecha_Pedido]"
+                      dataType="dbDate"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Copia de Fecha_Pedido]"
+                      name="Copia de Fecha_Pedido">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\cambiar formato a fecha_pedido.Outputs[Salida de conversión de datos].Columns[Copia de Fecha_Pedido]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_ciudad]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_ciudad]"
+                      name="Pk_ciudad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\Ciudad.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_ciudad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_cliente]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_cliente]"
+                      name="Pk_cliente">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\Cliente.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_cliente]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_producto]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_producto]"
+                      name="Pk_producto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\Producto.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_producto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_tiempo]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación].Columns[Pk_tiempo]"
+                      name="Pk_tiempo"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\cargar hechos ventas\Tiempo.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_tiempo]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar hechos ventas\Origen venta Stage"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="Origen venta Stage"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[Stage ventas]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar hechos ventas\Origen venta Stage.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventas]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventas]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Pedido]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Id_Pedido]"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Pedido]"
+                      name="Id_Pedido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Fecha_Pedido]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Fecha_Pedido]"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Fecha_Pedido]"
+                      name="Fecha_Pedido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Fecha_Envio]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Fecha_Envio]"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Fecha_Envio]"
+                      name="Fecha_Envio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Forma_Envio]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Forma_Envio]"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Forma_Envio]"
+                      name="Forma_Envio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Total]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Total]"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Total]"
+                      name="Total"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Cantidad]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Cantidad]"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Cantidad]"
+                      name="Cantidad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Descuento]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Descuento]"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Descuento]"
+                      name="Descuento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Ganancia]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Ganancia]"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Ganancia]"
+                      name="Ganancia"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Cliente]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Id_Cliente]"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Cliente]"
+                      name="Id_Cliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Ciudad]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Ciudad]"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Ciudad]"
+                      name="Ciudad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Producto]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Id_Producto]"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Producto]"
+                      name="Id_Producto"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Id_Fila]"
+                      dataType="r8"
+                      name="Id_Fila" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Id_Pedido]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Pedido" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Fecha_Pedido]"
+                      dataType="dbTimeStamp"
+                      name="Fecha_Pedido" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Fecha_Envio]"
+                      dataType="dbTimeStamp"
+                      name="Fecha_Envio" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Forma_Envio]"
+                      dataType="wstr"
+                      length="255"
+                      name="Forma_Envio" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Total]"
+                      dataType="r8"
+                      name="Total" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Cantidad]"
+                      dataType="r8"
+                      name="Cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Descuento]"
+                      dataType="r8"
+                      name="Descuento" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Ganancia]"
+                      dataType="r8"
+                      name="Ganancia" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Id_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Cliente" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].ExternalColumns[Id_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Producto" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Id_Pedido]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Id_Pedido]"
+                      name="Id_Pedido" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Fecha_Pedido]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Fecha_Pedido]"
+                      name="Fecha_Pedido" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Fecha_Envio]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Fecha_Envio]"
+                      name="Fecha_Envio" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Forma_Envio]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Forma_Envio]"
+                      name="Forma_Envio" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Total]"
+                      dataType="r8"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Total]"
+                      name="Total" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Cantidad]"
+                      dataType="r8"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Cantidad]"
+                      name="Cantidad" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Descuento]"
+                      dataType="r8"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Descuento]"
+                      name="Descuento" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Ganancia]"
+                      dataType="r8"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Ganancia]"
+                      name="Ganancia" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Id_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Id_Cliente]"
+                      name="Id_Cliente" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Ciudad]"
+                      name="Ciudad" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Id_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[Id_Producto]"
+                      name="Id_Producto" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar hechos ventas\Producto"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Búsqueda;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;6"
+              description="Combina columnas adicionales con el flujo de datos mediante la búsqueda de valores en una tabla. Por ejemplo, se combina la columna 'id. de empleado' con la tabla de empleados para obtener la 'fecha de contratación' y 'el nombre de empleado'. Se recomienda esta transformación cuando hay suficiente espacio en memoria para la tabla de búsqueda."
+              name="Producto"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL que genera la tabla de búsqueda."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Dim_producto]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica una instrucción SQL que usa parámetros para generar la tabla de búsqueda."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Dim_producto]) [refTable]
+where [refTable].[Id_producto] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de conexión utilizado para tener acceso al conjunto de datos de referencia."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de caché de la tabla de búsqueda."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cómo la transformación de búsquedas trata las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el porcentaje de la caché asignado a las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indica si se debe hacer referencia a metadatos en formato XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Pk_producto" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Id_producto" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Nombre" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Categoria" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Subcategoria" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
+                  name="ParameterMap">#{Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Producto]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina si las claves duplicadas de los datos de referencia se deben tratar como errores cuando se usa el modo de caché."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar hechos ventas\Producto.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventasDM]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventasDM]"
+                  description="Administrador de conexiones utilizado para obtener acceso a los datos de búsqueda."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar hechos ventas\Producto.Inputs[Entrada de búsqueda]"
+                  name="Entrada de búsqueda">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Producto.Inputs[Entrada de búsqueda].Columns[Id_Producto]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Id_Producto"
+                      lineageId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB].Columns[Id_Producto]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                          name="JoinToReferenceColumn">Id_producto</property>
+                        <property
+                          dataType="System.Null"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar hechos ventas\Producto.Outputs[Salida de entradas coincidentes de búsqueda]"
+                  errorOrTruncationOperation="Búsqueda"
+                  exclusionGroup="1"
+                  name="Salida de entradas coincidentes de búsqueda"
+                  synchronousInputId="Package\cargar hechos ventas\Producto.Inputs[Entrada de búsqueda]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Producto.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_producto]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copiar columna"
+                      lineageId="Package\cargar hechos ventas\Producto.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_producto]"
+                      name="Pk_producto"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn">Pk_producto</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar hechos ventas\Producto.Outputs[Salida de entradas no coincidentes de búsqueda]"
+                  description="Salida de búsqueda que trata las filas sin entradas coincidentes en el conjunto de datos de referencia. Utilice esta salida cuando la propiedad NoMatchBehavior esté establecida en &quot;Enviar las filas sin entradas coincidentes a la salida de entradas no coincidentes&quot;."
+                  exclusionGroup="1"
+                  name="Salida de entradas no coincidentes de búsqueda"
+                  synchronousInputId="Package\cargar hechos ventas\Producto.Inputs[Entrada de búsqueda]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar hechos ventas\Producto.Outputs[Salida de error de búsqueda]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de búsqueda"
+                  synchronousInputId="Package\cargar hechos ventas\Producto.Inputs[Entrada de búsqueda]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Producto.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Producto.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Producto.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Producto.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar hechos ventas\salida de errores"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="salida de errores"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[Des]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar hechos ventas\salida de errores.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventasDM]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventasDM]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].Columns[Total]"
+                      cachedDataType="r8"
+                      cachedName="Total"
+                      externalMetadataColumnId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Total]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Total]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].Columns[Cantidad]"
+                      cachedDataType="r8"
+                      cachedName="Cantidad"
+                      externalMetadataColumnId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cantidad]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Cantidad]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].Columns[Descuento]"
+                      cachedDataType="r8"
+                      cachedName="Descuento"
+                      externalMetadataColumnId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Descuento]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Descuento]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].Columns[Ganancia]"
+                      cachedDataType="r8"
+                      cachedName="Ganancia"
+                      externalMetadataColumnId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Ganancia]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Ganancia]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].Columns[Pk_ciudad]"
+                      cachedDataType="i4"
+                      cachedName="Pk_ciudad"
+                      externalMetadataColumnId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pk_ciudad]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_ciudad]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].Columns[Pk_cliente]"
+                      cachedDataType="i4"
+                      cachedName="Pk_cliente"
+                      externalMetadataColumnId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pk_cliente]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_cliente]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].Columns[Pk_producto]"
+                      cachedDataType="i4"
+                      cachedName="Pk_producto"
+                      externalMetadataColumnId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pk_producto]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_producto]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].Columns[Pk_tiempo]"
+                      cachedDataType="i4"
+                      cachedName="Pk_tiempo"
+                      externalMetadataColumnId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pk_tiempo]"
+                      lineageId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1].Columns[Pk_tiempo]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[ErrorCode]"
+                      lineageId="Package\cargar hechos ventas\hechos venta.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      externalMetadataColumnId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\cargar hechos ventas\hechos venta.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pk_ciudad]"
+                      dataType="i4"
+                      name="Pk_ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pk_cliente]"
+                      dataType="i4"
+                      name="Pk_cliente" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pk_producto]"
+                      dataType="i4"
+                      name="Pk_producto" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pk_tiempo]"
+                      dataType="i4"
+                      name="Pk_tiempo" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Total]"
+                      dataType="r8"
+                      name="Total" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cantidad]"
+                      dataType="r8"
+                      name="Cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Descuento]"
+                      dataType="r8"
+                      name="Descuento" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[Ganancia]"
+                      dataType="r8"
+                      name="Ganancia" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[ErrorCode]"
+                      dataType="i4"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB].ExternalColumns[ErrorColumn]"
+                      dataType="i4"
+                      name="ErrorColumn" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar hechos ventas\salida de errores.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\salida de errores.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\salida de errores.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\salida de errores.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\cargar hechos ventas\Tiempo"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Búsqueda;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;6"
+              description="Combina columnas adicionales con el flujo de datos mediante la búsqueda de valores en una tabla. Por ejemplo, se combina la columna 'id. de empleado' con la tabla de empleados para obtener la 'fecha de contratación' y 'el nombre de empleado'. Se recomienda esta transformación cuando hay suficiente espacio en memoria para la tabla de búsqueda."
+              name="Tiempo"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL que genera la tabla de búsqueda."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Dim_tiempo]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica una instrucción SQL que usa parámetros para generar la tabla de búsqueda."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Dim_tiempo]) [refTable]
+where [refTable].[Id_fecha] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de conexión utilizado para tener acceso al conjunto de datos de referencia."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de caché de la tabla de búsqueda."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cómo la transformación de búsquedas trata las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el porcentaje de la caché asignado a las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indica si se debe hacer referencia a metadatos en formato XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Pk_tiempo" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Id_fecha" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Dia" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Mes" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Semestre" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="año" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Dia_semana" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Semana_del_año" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Mes_nombre" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Semestre_Nombre" dataType="DT_STR" length="2" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Dia_semana_Nombre" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
+                  name="ParameterMap">#{Package\cargar hechos ventas\cambiar formato a fecha_pedido.Outputs[Salida de conversión de datos].Columns[Copia de Fecha_Pedido]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina si las claves duplicadas de los datos de referencia se deben tratar como errores cuando se usa el modo de caché."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\cargar hechos ventas\Tiempo.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventasDM]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventasDM]"
+                  description="Administrador de conexiones utilizado para obtener acceso a los datos de búsqueda."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\cargar hechos ventas\Tiempo.Inputs[Entrada de búsqueda]"
+                  name="Entrada de búsqueda">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\cargar hechos ventas\Tiempo.Inputs[Entrada de búsqueda].Columns[Copia de Fecha_Pedido]"
+                      cachedDataType="dbDate"
+                      cachedName="Copia de Fecha_Pedido"
+                      lineageId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Outputs[Salida de conversión de datos].Columns[Copia de Fecha_Pedido]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                          name="JoinToReferenceColumn">Id_fecha</property>
+                        <property
+                          dataType="System.Null"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\cargar hechos ventas\Tiempo.Outputs[Salida de entradas coincidentes de búsqueda]"
+                  errorOrTruncationOperation="Búsqueda"
+                  exclusionGroup="1"
+                  name="Salida de entradas coincidentes de búsqueda"
+                  synchronousInputId="Package\cargar hechos ventas\Tiempo.Inputs[Entrada de búsqueda]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Tiempo.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_tiempo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copiar columna"
+                      lineageId="Package\cargar hechos ventas\Tiempo.Outputs[Salida de entradas coincidentes de búsqueda].Columns[Pk_tiempo]"
+                      name="Pk_tiempo"
+                      truncationRowDisposition="RedirectRow">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn">Pk_tiempo</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar hechos ventas\Tiempo.Outputs[Salida de entradas no coincidentes de búsqueda]"
+                  description="Salida de búsqueda que trata las filas sin entradas coincidentes en el conjunto de datos de referencia. Utilice esta salida cuando la propiedad NoMatchBehavior esté establecida en &quot;Enviar las filas sin entradas coincidentes a la salida de entradas no coincidentes&quot;."
+                  exclusionGroup="1"
+                  name="Salida de entradas no coincidentes de búsqueda"
+                  synchronousInputId="Package\cargar hechos ventas\Tiempo.Inputs[Entrada de búsqueda]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\cargar hechos ventas\Tiempo.Outputs[Salida de error de búsqueda]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de búsqueda"
+                  synchronousInputId="Package\cargar hechos ventas\Tiempo.Inputs[Entrada de búsqueda]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Tiempo.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Tiempo.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\cargar hechos ventas\Tiempo.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\cargar hechos ventas\Tiempo.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\cargar hechos ventas.Paths[Salida de agregado 1]"
+              endId="Package\cargar hechos ventas\hechos venta.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de agregado 1"
+              startId="Package\cargar hechos ventas\Agrupar.Outputs[Salida de agregado 1]" />
+            <path
+              refId="Package\cargar hechos ventas.Paths[Salida de conversión de datos]"
+              endId="Package\cargar hechos ventas\Ciudad.Inputs[Entrada de búsqueda]"
+              name="Salida de conversión de datos"
+              startId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\cargar hechos ventas.Paths[Salida de entradas coincidentes de búsqueda]"
+              endId="Package\cargar hechos ventas\Producto.Inputs[Entrada de búsqueda]"
+              name="Salida de entradas coincidentes de búsqueda"
+              startId="Package\cargar hechos ventas\Cliente.Outputs[Salida de entradas coincidentes de búsqueda]" />
+            <path
+              refId="Package\cargar hechos ventas.Paths[Salida de entradas coincidentes de búsqueda1]"
+              endId="Package\cargar hechos ventas\Cliente.Inputs[Entrada de búsqueda]"
+              name="Salida de entradas coincidentes de búsqueda"
+              startId="Package\cargar hechos ventas\Ciudad.Outputs[Salida de entradas coincidentes de búsqueda]" />
+            <path
+              refId="Package\cargar hechos ventas.Paths[Salida de entradas coincidentes de búsqueda2]"
+              endId="Package\cargar hechos ventas\Tiempo.Inputs[Entrada de búsqueda]"
+              name="Salida de entradas coincidentes de búsqueda"
+              startId="Package\cargar hechos ventas\Producto.Outputs[Salida de entradas coincidentes de búsqueda]" />
+            <path
+              refId="Package\cargar hechos ventas.Paths[Salida de entradas coincidentes de búsqueda3]"
+              endId="Package\cargar hechos ventas\Ordenar.Inputs[Entrada de ordenación]"
+              name="Salida de entradas coincidentes de búsqueda"
+              startId="Package\cargar hechos ventas\Tiempo.Outputs[Salida de entradas coincidentes de búsqueda]" />
+            <path
+              refId="Package\cargar hechos ventas.Paths[Salida de error de búsqueda]"
+              endId="Package\cargar hechos ventas\DataReaderDest 1.Inputs[Entrada de destino de DataReader]"
+              name="Salida de error de búsqueda"
+              startId="Package\cargar hechos ventas\Ciudad.Outputs[Salida de error de búsqueda]" />
+            <path
+              refId="Package\cargar hechos ventas.Paths[Salida de error de búsqueda1]"
+              endId="Package\cargar hechos ventas\DataReaderDest 2.Inputs[Entrada de destino de DataReader]"
+              name="Salida de error de búsqueda"
+              startId="Package\cargar hechos ventas\Tiempo.Outputs[Salida de error de búsqueda]" />
+            <path
+              refId="Package\cargar hechos ventas.Paths[Salida de error de conversión de datos]"
+              endId="Package\cargar hechos ventas\DataReaderDest.Inputs[Entrada de destino de DataReader]"
+              name="Salida de error de conversión de datos"
+              startId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Outputs[Salida de error de conversión de datos]" />
+            <path
+              refId="Package\cargar hechos ventas.Paths[Salida de error de destino de OLE DB]"
+              endId="Package\cargar hechos ventas\salida de errores.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de error de destino de OLE DB"
+              startId="Package\cargar hechos ventas\hechos venta.Outputs[Salida de error de destino de OLE DB]" />
+            <path
+              refId="Package\cargar hechos ventas.Paths[Salida de ordenación]"
+              endId="Package\cargar hechos ventas\Agrupar.Inputs[Entrada de agregado 1]"
+              name="Salida de ordenación"
+              startId="Package\cargar hechos ventas\Ordenar.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\cargar hechos ventas.Paths[Salida de origen de OLE DB]"
+              endId="Package\cargar hechos ventas\cambiar formato a fecha_pedido.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de OLE DB"
+              startId="Package\cargar hechos ventas\Origen venta Stage.Outputs[Salida de origen de OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="sql12">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="191,42"
+          Id="Package\cargar hechos ventas"
+          TopLeft="271,27" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\cargar hechos ventas">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="141,42"
+          Id="Package\cargar hechos ventas\hechos venta"
+          TopLeft="309,662" />
+        <NodeLayout
+          Size="117,42"
+          Id="Package\cargar hechos ventas\Ordenar"
+          TopLeft="329,512" />
+        <NodeLayout
+          Size="232,42"
+          Id="Package\cargar hechos ventas\cambiar formato a fecha_pedido"
+          TopLeft="259,100" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\cargar hechos ventas\DataReaderDest 2"
+          TopLeft="534,444" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\cargar hechos ventas\DataReaderDest 1"
+          TopLeft="561,191" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\cargar hechos ventas\Producto"
+          TopLeft="323,355" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\cargar hechos ventas\salida de errores"
+          TopLeft="553,662" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\cargar hechos ventas\DataReaderDest"
+          TopLeft="554,97" />
+        <NodeLayout
+          Size="111,42"
+          Id="Package\cargar hechos ventas\Ciudad"
+          TopLeft="322,193" />
+        <NodeLayout
+          Size="114,42"
+          Id="Package\cargar hechos ventas\Tiempo"
+          TopLeft="326,441" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\cargar hechos ventas\Origen venta Stage"
+          TopLeft="292,20" />
+        <NodeLayout
+          Size="111,42"
+          Id="Package\cargar hechos ventas\Cliente"
+          TopLeft="325,282" />
+        <NodeLayout
+          Size="116,42"
+          Id="Package\cargar hechos ventas\Agrupar"
+          TopLeft="314,590" />
+        <EdgeLayout
+          Id="Package\cargar hechos ventas.Paths[Salida de error de búsqueda1]"
+          TopLeft="440,463.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="94,0"
+              Start="0,0"
+              End="86.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="86.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-28.18201171875,5,142.8640234375,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar hechos ventas.Paths[Salida de error de búsqueda]"
+          TopLeft="433,213">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="128,0"
+              Start="0,0"
+              End="120.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="120.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-11.18201171875,5,142.8640234375,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar hechos ventas.Paths[Salida de entradas coincidentes de búsqueda3]"
+          TopLeft="385.25,483">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-99.8190234375,4.65234375,199.638046875,12.1953125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar hechos ventas.Paths[Salida de entradas coincidentes de búsqueda2]"
+          TopLeft="383.25,397">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-99.8190234375,12.15234375,199.638046875,12.1953125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar hechos ventas.Paths[Salida de entradas coincidentes de búsqueda1]"
+          TopLeft="379,235">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-99.8190234375,13.65234375,199.638046875,12.1953125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar hechos ventas.Paths[Salida de entradas coincidentes de búsqueda]"
+          TopLeft="382,324">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31"
+              Start="0,0"
+              End="0,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-99.8190234375,5.65234375,199.638046875,12.1953125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar hechos ventas.Paths[Salida de conversión de datos]"
+          TopLeft="376.25,142">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51"
+              Start="0,0"
+              End="0,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar hechos ventas.Paths[Salida de agregado 1]"
+          TopLeft="375.75,632">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30"
+              Start="0,0"
+              End="0,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar hechos ventas.Paths[Salida de origen de OLE DB]"
+          TopLeft="376,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar hechos ventas.Paths[Salida de ordenación]"
+          TopLeft="387.5,554">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-15.5,36"
+              Start="0,0"
+              End="-15.5,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14"
+                    Point2="0,18"
+                    Point3="-4,18" />
+                  <mssgle:LineSegment
+                    End="-11.5,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-11.5,18"
+                    Point2="-15.5,18"
+                    Point3="-15.5,22" />
+                  <mssgle:LineSegment
+                    End="-15.5,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar hechos ventas.Paths[Salida de error de destino de OLE DB]"
+          TopLeft="450,683">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="103,0"
+              Start="0,0"
+              End="95.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="95.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-43.72947265625,5,182.9589453125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cargar hechos ventas.Paths[Salida de error de conversión de datos]"
+          TopLeft="491,119.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="63,0"
+              Start="0,0"
+              End="55.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="55.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-66.68123046875,5,188.8624609375,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

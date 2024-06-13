@@ -1,0 +1,1961 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/20/2018 9:47:31 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-D18B8IJ"
+  DTS:CreatorName="DESKTOP-D18B8IJ\Natalia"
+  DTS:DTSID="{656FB0D7-C451-4038-A2A3-43414F1ECF03}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.5000.0"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="Cargar BD Stage"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{4C4D01A4-0D30-44F4-83FA-AF93103612CD}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Administrador de conexiones con Excel 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{C0CA7C88-23BC-436A-AD8C-E3AA1EC2C798}"
+      DTS:ObjectName="Administrador de conexiones con Excel 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Natalia\scd\fuente.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventas]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FE805A24-3128-4C3A-A7E7-79F922A904F9}"
+      DTS:ObjectName="DESKTOP-D18B8IJ.ventas">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-D18B8IJ;Initial Catalog=ventas;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventas 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{19410F2F-D0F3-4D4E-8BC6-0EA98C5B563F}"
+      DTS:ObjectName="DESKTOP-D18B8IJ.ventas 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-D18B8IJ;Initial Catalog=ventas;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Cargar tablas Stage"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{6445452e-910b-4746-8e8f-cc06d6f31c62}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargar tablas Stage"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargar tablas Stage\Destino Stage ciudad"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino Stage ciudad"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[Stage ciudad]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar tablas Stage\Destino Stage ciudad.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventas 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventas 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar tablas Stage\Destino Stage ciudad.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ciudad.Inputs[Entrada de destino de OLE DB].Columns[Ciudad]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Ciudad"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ciudad.Inputs[Entrada de destino de OLE DB].ExternalColumns[Ciudad]"
+                      lineageId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].Columns[Ciudad]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ciudad.Inputs[Entrada de destino de OLE DB].Columns[Estado]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Estado"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ciudad.Inputs[Entrada de destino de OLE DB].ExternalColumns[Estado]"
+                      lineageId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].Columns[Estado]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ciudad.Inputs[Entrada de destino de OLE DB].Columns[País]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="País"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ciudad.Inputs[Entrada de destino de OLE DB].ExternalColumns[País]"
+                      lineageId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].Columns[País]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ciudad.Inputs[Entrada de destino de OLE DB].Columns[Región]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Región"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ciudad.Inputs[Entrada de destino de OLE DB].ExternalColumns[Región]"
+                      lineageId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].Columns[Región]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ciudad.Inputs[Entrada de destino de OLE DB].ExternalColumns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ciudad.Inputs[Entrada de destino de OLE DB].ExternalColumns[Estado]"
+                      dataType="wstr"
+                      length="255"
+                      name="Estado" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ciudad.Inputs[Entrada de destino de OLE DB].ExternalColumns[País]"
+                      dataType="wstr"
+                      length="255"
+                      name="País" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ciudad.Inputs[Entrada de destino de OLE DB].ExternalColumns[Región]"
+                      dataType="wstr"
+                      length="255"
+                      name="Región" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar tablas Stage\Destino Stage ciudad.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Cargar tablas Stage\Destino Stage ciudad.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ciudad.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Destino Stage ciudad.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ciudad.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Destino Stage ciudad.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar tablas Stage\Destino Stage Clientes"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino Stage Clientes"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[Stage Clientes]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar tablas Stage\Destino Stage Clientes.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventas 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventas 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar tablas Stage\Destino Stage Clientes.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage Clientes.Inputs[Entrada de destino de OLE DB].Columns[Id_Cliente]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Id_Cliente"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage Clientes.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id_Cliente]"
+                      lineageId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].Columns[Id_Cliente]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage Clientes.Inputs[Entrada de destino de OLE DB].Columns[Nombre_Cliente]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Nombre_Cliente"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage Clientes.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombre_Cliente]"
+                      lineageId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].Columns[Nombre_Cliente]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage Clientes.Inputs[Entrada de destino de OLE DB].Columns[Segmento]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Segmento"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage Clientes.Inputs[Entrada de destino de OLE DB].ExternalColumns[Segmento]"
+                      lineageId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].Columns[Segmento]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage Clientes.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Cliente" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage Clientes.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombre_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      name="Nombre_Cliente" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage Clientes.Inputs[Entrada de destino de OLE DB].ExternalColumns[Segmento]"
+                      dataType="wstr"
+                      length="255"
+                      name="Segmento" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar tablas Stage\Destino Stage Clientes.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Cargar tablas Stage\Destino Stage Clientes.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage Clientes.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Destino Stage Clientes.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage Clientes.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Destino Stage Clientes.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar tablas Stage\Destino Stage productos"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino Stage productos"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[Stage productos]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar tablas Stage\Destino Stage productos.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventas 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventas 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar tablas Stage\Destino Stage productos.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage productos.Inputs[Entrada de destino de OLE DB].Columns[Id_Producto]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Id_Producto"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage productos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id_Producto]"
+                      lineageId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].Columns[Id_Producto]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage productos.Inputs[Entrada de destino de OLE DB].Columns[Categoría]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Categoría"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage productos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Categoría]"
+                      lineageId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].Columns[Categoría]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage productos.Inputs[Entrada de destino de OLE DB].Columns[Subcategoría]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Subcategoría"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage productos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Subcategoría]"
+                      lineageId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].Columns[Subcategoría]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage productos.Inputs[Entrada de destino de OLE DB].Columns[Nombre_Producto]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Nombre_Producto"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage productos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombre_Producto]"
+                      lineageId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].Columns[Nombre_Producto]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage productos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Producto" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage productos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Categoría]"
+                      dataType="wstr"
+                      length="255"
+                      name="Categoría" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage productos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Subcategoría]"
+                      dataType="wstr"
+                      length="255"
+                      name="Subcategoría" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage productos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombre_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      name="Nombre_Producto" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar tablas Stage\Destino Stage productos.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Cargar tablas Stage\Destino Stage productos.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage productos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Destino Stage productos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage productos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Destino Stage productos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar tablas Stage\Destino Stage ventas"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino Stage ventas"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[Stage ventas]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Sólo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar tablas Stage\Destino Stage ventas.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventas 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-D18B8IJ.ventas 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].Columns[Id_Fila]"
+                      cachedDataType="r8"
+                      cachedName="Id_Fila"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id_Fila]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Id_Fila]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].Columns[Id_Pedido]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Id_Pedido"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id_Pedido]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Id_Pedido]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].Columns[Fecha_Pedido]"
+                      cachedDataType="date"
+                      cachedName="Fecha_Pedido"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Fecha_Pedido]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Fecha_Pedido]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].Columns[Fecha_Envio]"
+                      cachedDataType="date"
+                      cachedName="Fecha_Envio"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Fecha_Envio]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Fecha_Envio]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].Columns[Forma_Envio]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Forma_Envio"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Forma_Envio]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Forma_Envio]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].Columns[Total]"
+                      cachedDataType="r8"
+                      cachedName="Total"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Total]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Total]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].Columns[Cantidad]"
+                      cachedDataType="r8"
+                      cachedName="Cantidad"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cantidad]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Cantidad]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].Columns[Descuento]"
+                      cachedDataType="r8"
+                      cachedName="Descuento"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Descuento]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Descuento]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].Columns[Ganancia]"
+                      cachedDataType="r8"
+                      cachedName="Ganancia"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Ganancia]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Ganancia]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].Columns[Id_Cliente]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Id_Cliente"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id_Cliente]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Id_Cliente]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].Columns[Ciudad]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Ciudad"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Ciudad]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Ciudad]" />
+                    <inputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].Columns[Id_Producto]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Id_Producto"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id_Producto]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Id_Producto]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id_Fila]"
+                      dataType="r8"
+                      name="Id_Fila" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id_Pedido]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Pedido" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Fecha_Pedido]"
+                      dataType="dbTimeStamp"
+                      name="Fecha_Pedido" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Fecha_Envio]"
+                      dataType="dbTimeStamp"
+                      name="Fecha_Envio" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Forma_Envio]"
+                      dataType="wstr"
+                      length="255"
+                      name="Forma_Envio" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Total]"
+                      dataType="r8"
+                      name="Total" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cantidad]"
+                      dataType="r8"
+                      name="Cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Descuento]"
+                      dataType="r8"
+                      name="Descuento" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Ganancia]"
+                      dataType="r8"
+                      name="Ganancia" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Cliente" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Producto" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar tablas Stage\Destino Stage ventas.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Destino Stage ventas.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Destino Stage ventas.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Destino Stage ventas.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar tablas Stage\Origen ciudad"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de Excel"
+              name="Origen ciudad"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">Transacciones$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="La asignación de parámetros del comando SQL a variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar tablas Stage\Origen ciudad.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones con Excel 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones con Excel 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel]"
+                  name="Salida de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].Columns[Ciudad]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Ciudad]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].Columns[Ciudad]"
+                      name="Ciudad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].Columns[Estado]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Estado]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].Columns[Estado]"
+                      name="Estado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].Columns[País]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[País]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].Columns[País]"
+                      name="País"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].Columns[Región]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Región]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].Columns[Región]"
+                      name="Región"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Id_Fila]"
+                      dataType="r8"
+                      name="Id_Fila" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Id_Pedido]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Pedido" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Fecha_Pedido]"
+                      dataType="date"
+                      name="Fecha_Pedido" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Fecha_Envio]"
+                      dataType="date"
+                      name="Fecha_Envio" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Forma_Envio]"
+                      dataType="wstr"
+                      length="255"
+                      name="Forma_Envio" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Id_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Cliente" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Nombre_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      name="Nombre_Cliente" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Segmento]"
+                      dataType="wstr"
+                      length="255"
+                      name="Segmento" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Estado]"
+                      dataType="wstr"
+                      length="255"
+                      name="Estado" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[País]"
+                      dataType="wstr"
+                      length="255"
+                      name="País" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Región]"
+                      dataType="wstr"
+                      length="255"
+                      name="Región" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Id_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Producto" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Categoría]"
+                      dataType="wstr"
+                      length="255"
+                      name="Categoría" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Subcategoría]"
+                      dataType="wstr"
+                      length="255"
+                      name="Subcategoría" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Nombre_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      name="Nombre_Producto" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Total]"
+                      dataType="r8"
+                      name="Total" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Cantidad]"
+                      dataType="r8"
+                      name="Cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Descuento]"
+                      dataType="r8"
+                      name="Descuento" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel].ExternalColumns[Ganancia]"
+                      dataType="r8"
+                      name="Ganancia" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de error de origen de Excel]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de error de origen de Excel].Columns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de error de origen de Excel].Columns[Ciudad]"
+                      name="Ciudad" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de error de origen de Excel].Columns[Estado]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de error de origen de Excel].Columns[Estado]"
+                      name="Estado" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de error de origen de Excel].Columns[País]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de error de origen de Excel].Columns[País]"
+                      name="País" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de error de origen de Excel].Columns[Región]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de error de origen de Excel].Columns[Región]"
+                      name="Región" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar tablas Stage\Origen de Excel clientes"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de Excel"
+              name="Origen de Excel clientes"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">Transacciones$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="La asignación de parámetros del comando SQL a variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar tablas Stage\Origen de Excel clientes.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones con Excel 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones con Excel 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel]"
+                  name="Salida de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].Columns[Id_Cliente]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Id_Cliente]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].Columns[Id_Cliente]"
+                      name="Id_Cliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].Columns[Nombre_Cliente]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Nombre_Cliente]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].Columns[Nombre_Cliente]"
+                      name="Nombre_Cliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].Columns[Segmento]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Segmento]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].Columns[Segmento]"
+                      name="Segmento"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Id_Fila]"
+                      dataType="r8"
+                      name="Id_Fila" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Id_Pedido]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Pedido" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Fecha_Pedido]"
+                      dataType="date"
+                      name="Fecha_Pedido" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Fecha_Envio]"
+                      dataType="date"
+                      name="Fecha_Envio" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Forma_Envio]"
+                      dataType="wstr"
+                      length="255"
+                      name="Forma_Envio" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Id_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Cliente" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Nombre_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      name="Nombre_Cliente" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Segmento]"
+                      dataType="wstr"
+                      length="255"
+                      name="Segmento" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Estado]"
+                      dataType="wstr"
+                      length="255"
+                      name="Estado" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[País]"
+                      dataType="wstr"
+                      length="255"
+                      name="País" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Región]"
+                      dataType="wstr"
+                      length="255"
+                      name="Región" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Id_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Producto" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Categoría]"
+                      dataType="wstr"
+                      length="255"
+                      name="Categoría" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Subcategoría]"
+                      dataType="wstr"
+                      length="255"
+                      name="Subcategoría" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Nombre_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      name="Nombre_Producto" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Total]"
+                      dataType="r8"
+                      name="Total" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Cantidad]"
+                      dataType="r8"
+                      name="Cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Descuento]"
+                      dataType="r8"
+                      name="Descuento" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel].ExternalColumns[Ganancia]"
+                      dataType="r8"
+                      name="Ganancia" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de error de origen de Excel]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de error de origen de Excel].Columns[Id_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de error de origen de Excel].Columns[Id_Cliente]"
+                      name="Id_Cliente" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de error de origen de Excel].Columns[Nombre_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de error de origen de Excel].Columns[Nombre_Cliente]"
+                      name="Nombre_Cliente" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de error de origen de Excel].Columns[Segmento]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de error de origen de Excel].Columns[Segmento]"
+                      name="Segmento" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar tablas Stage\Origen Productos"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de Excel"
+              name="Origen Productos"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">Transacciones$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="La asignación de parámetros del comando SQL a variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar tablas Stage\Origen Productos.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones con Excel 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones con Excel 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel]"
+                  name="Salida de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].Columns[Id_Producto]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Id_Producto]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].Columns[Id_Producto]"
+                      name="Id_Producto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].Columns[Categoría]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Categoría]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].Columns[Categoría]"
+                      name="Categoría"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].Columns[Subcategoría]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Subcategoría]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].Columns[Subcategoría]"
+                      name="Subcategoría"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].Columns[Nombre_Producto]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Nombre_Producto]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].Columns[Nombre_Producto]"
+                      name="Nombre_Producto"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Id_Fila]"
+                      dataType="r8"
+                      name="Id_Fila" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Id_Pedido]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Pedido" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Fecha_Pedido]"
+                      dataType="date"
+                      name="Fecha_Pedido" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Fecha_Envio]"
+                      dataType="date"
+                      name="Fecha_Envio" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Forma_Envio]"
+                      dataType="wstr"
+                      length="255"
+                      name="Forma_Envio" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Id_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Cliente" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Nombre_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      name="Nombre_Cliente" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Segmento]"
+                      dataType="wstr"
+                      length="255"
+                      name="Segmento" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Estado]"
+                      dataType="wstr"
+                      length="255"
+                      name="Estado" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[País]"
+                      dataType="wstr"
+                      length="255"
+                      name="País" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Región]"
+                      dataType="wstr"
+                      length="255"
+                      name="Región" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Id_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Producto" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Categoría]"
+                      dataType="wstr"
+                      length="255"
+                      name="Categoría" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Subcategoría]"
+                      dataType="wstr"
+                      length="255"
+                      name="Subcategoría" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Nombre_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      name="Nombre_Producto" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Total]"
+                      dataType="r8"
+                      name="Total" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Cantidad]"
+                      dataType="r8"
+                      name="Cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Descuento]"
+                      dataType="r8"
+                      name="Descuento" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel].ExternalColumns[Ganancia]"
+                      dataType="r8"
+                      name="Ganancia" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de error de origen de Excel]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de error de origen de Excel].Columns[Id_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de error de origen de Excel].Columns[Id_Producto]"
+                      name="Id_Producto" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de error de origen de Excel].Columns[Categoría]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de error de origen de Excel].Columns[Categoría]"
+                      name="Categoría" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de error de origen de Excel].Columns[Subcategoría]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de error de origen de Excel].Columns[Subcategoría]"
+                      name="Subcategoría" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de error de origen de Excel].Columns[Nombre_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de error de origen de Excel].Columns[Nombre_Producto]"
+                      name="Nombre_Producto" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar tablas Stage\Origen venta"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de Excel"
+              name="Origen venta"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">Transacciones$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="La asignación de parámetros del comando SQL a variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar tablas Stage\Origen venta.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones con Excel 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones con Excel 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel]"
+                  name="Salida de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Id_Fila]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Id_Fila]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Id_Fila]"
+                      name="Id_Fila"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Id_Pedido]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Id_Pedido]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Id_Pedido]"
+                      name="Id_Pedido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Fecha_Pedido]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Fecha_Pedido]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Fecha_Pedido]"
+                      name="Fecha_Pedido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Fecha_Envio]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Fecha_Envio]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Fecha_Envio]"
+                      name="Fecha_Envio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Forma_Envio]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Forma_Envio]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Forma_Envio]"
+                      name="Forma_Envio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Total]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Total]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Total]"
+                      name="Total"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Cantidad]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Cantidad]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Cantidad]"
+                      name="Cantidad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Descuento]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Descuento]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Descuento]"
+                      name="Descuento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Ganancia]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Ganancia]"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Ganancia]"
+                      name="Ganancia"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Id_Cliente]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Id_Cliente]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Id_Cliente]"
+                      name="Id_Cliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Ciudad]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Ciudad]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Ciudad]"
+                      name="Ciudad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Id_Producto]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Id_Producto]"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].Columns[Id_Producto]"
+                      name="Id_Producto"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Id_Fila]"
+                      dataType="r8"
+                      name="Id_Fila" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Id_Pedido]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Pedido" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Fecha_Pedido]"
+                      dataType="date"
+                      name="Fecha_Pedido" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Fecha_Envio]"
+                      dataType="date"
+                      name="Fecha_Envio" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Forma_Envio]"
+                      dataType="wstr"
+                      length="255"
+                      name="Forma_Envio" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Id_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Cliente" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Nombre_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      name="Nombre_Cliente" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Segmento]"
+                      dataType="wstr"
+                      length="255"
+                      name="Segmento" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Estado]"
+                      dataType="wstr"
+                      length="255"
+                      name="Estado" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[País]"
+                      dataType="wstr"
+                      length="255"
+                      name="País" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Región]"
+                      dataType="wstr"
+                      length="255"
+                      name="Región" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Id_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      name="Id_Producto" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Categoría]"
+                      dataType="wstr"
+                      length="255"
+                      name="Categoría" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Subcategoría]"
+                      dataType="wstr"
+                      length="255"
+                      name="Subcategoría" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Nombre_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      name="Nombre_Producto" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Total]"
+                      dataType="r8"
+                      name="Total" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Cantidad]"
+                      dataType="r8"
+                      name="Cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Descuento]"
+                      dataType="r8"
+                      name="Descuento" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel].ExternalColumns[Ganancia]"
+                      dataType="r8"
+                      name="Ganancia" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Id_Fila]"
+                      dataType="r8"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Id_Fila]"
+                      name="Id_Fila" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Id_Pedido]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Id_Pedido]"
+                      name="Id_Pedido" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Fecha_Pedido]"
+                      dataType="date"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Fecha_Pedido]"
+                      name="Fecha_Pedido" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Fecha_Envio]"
+                      dataType="date"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Fecha_Envio]"
+                      name="Fecha_Envio" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Forma_Envio]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Forma_Envio]"
+                      name="Forma_Envio" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Total]"
+                      dataType="r8"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Total]"
+                      name="Total" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Cantidad]"
+                      dataType="r8"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Cantidad]"
+                      name="Cantidad" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Descuento]"
+                      dataType="r8"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Descuento]"
+                      name="Descuento" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Ganancia]"
+                      dataType="r8"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Ganancia]"
+                      name="Ganancia" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Id_Cliente]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Id_Cliente]"
+                      name="Id_Cliente" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Ciudad]"
+                      name="Ciudad" />
+                    <outputColumn
+                      refId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Id_Producto]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de error de origen de Excel].Columns[Id_Producto]"
+                      name="Id_Producto" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargar tablas Stage.Paths[Salida de origen de Excel]"
+              endId="Package\Cargar tablas Stage\Destino Stage Clientes.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de origen de Excel"
+              startId="Package\Cargar tablas Stage\Origen de Excel clientes.Outputs[Salida de origen de Excel]" />
+            <path
+              refId="Package\Cargar tablas Stage.Paths[Salida de origen de Excel1]"
+              endId="Package\Cargar tablas Stage\Destino Stage productos.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de origen de Excel"
+              startId="Package\Cargar tablas Stage\Origen Productos.Outputs[Salida de origen de Excel]" />
+            <path
+              refId="Package\Cargar tablas Stage.Paths[Salida de origen de Excel2]"
+              endId="Package\Cargar tablas Stage\Destino Stage ciudad.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de origen de Excel"
+              startId="Package\Cargar tablas Stage\Origen ciudad.Outputs[Salida de origen de Excel]" />
+            <path
+              refId="Package\Cargar tablas Stage.Paths[Salida de origen de Excel3]"
+              endId="Package\Cargar tablas Stage\Destino Stage ventas.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de origen de Excel"
+              startId="Package\Cargar tablas Stage\Origen venta.Outputs[Salida de origen de Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="sql12">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Cargar tablas Stage"
+          TopLeft="267,35" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Cargar tablas Stage">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="140,42"
+          Id="Package\Cargar tablas Stage\Origen venta"
+          TopLeft="762,11" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Cargar tablas Stage\Origen ciudad"
+          TopLeft="542,12" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Cargar tablas Stage\Destino Stage ciudad"
+          TopLeft="531,99" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Cargar tablas Stage\Origen Productos"
+          TopLeft="320,12" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Cargar tablas Stage\Destino Stage productos"
+          TopLeft="302,103" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Cargar tablas Stage\Origen de Excel clientes"
+          TopLeft="64,13" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Cargar tablas Stage\Destino Stage ventas"
+          TopLeft="739,96" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Cargar tablas Stage\Destino Stage Clientes"
+          TopLeft="67,104" />
+        <EdgeLayout
+          Id="Package\Cargar tablas Stage.Paths[Salida de origen de Excel3]"
+          TopLeft="830,53">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar tablas Stage.Paths[Salida de origen de Excel2]"
+          TopLeft="617,54">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar tablas Stage.Paths[Salida de origen de Excel1]"
+          TopLeft="399.5,54">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar tablas Stage.Paths[Salida de origen de Excel]"
+          TopLeft="159.25,55">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
